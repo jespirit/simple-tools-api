@@ -10,6 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # =================================================================
+      # MISSING STEP: Check out the repository code
+      # This must come first so all other steps can access the repo files.
+      # =================================================================
+      - name: Check out repository
+        uses: actions/checkout@v4
+
       # -------------------------------------------------------------------
       # NEW STEP: Install the OpenShift CLI on the runner
       # This must come before any steps that use the 'oc' command.
