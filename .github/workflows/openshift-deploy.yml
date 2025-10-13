@@ -28,11 +28,11 @@ jobs:
 
       # NEW STEP: Apply environment variables to the BuildConfig
       - name: Apply Build Configuration
-        run: oc patch buildconfig simple-tools-api --patch-file buildconfig-patch.yml
+        run: oc patch buildconfig simple-tools-api --patch-file openshift/buildconfig-patch.yml
 
       # NEW STEP: Apply environment variables to the Deployment
       - name: Apply Deployment Configuration
-        run: oc patch deployment simple-tools-api --patch-file deployment-patch.yml
+        run: oc patch deployment simple-tools-api --patch-file openshift/deployment-patch.yml
 
       # 2. Starts a new binary build from the latest code
       - name: Start openshift build
