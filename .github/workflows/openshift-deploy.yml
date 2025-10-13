@@ -10,6 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # -------------------------------------------------------------------
+      # NEW STEP: Install the OpenShift CLI on the runner
+      # This must come before any steps that use the 'oc' command.
+      # -------------------------------------------------------------------
+      - name: Install oc CLI
+        uses: redhat-actions/oc-installer@v1
+
       # 1. Logs into openshift
       - name: Log in to Openshift
         uses: redhat-actions/oc-login@v1
