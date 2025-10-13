@@ -6,10 +6,11 @@ spec:
           ports:
             - containerPort: 8080
               protocol: TCP
-          env:
-            - name: ASPNETCORE_URLS
-              value: "http://*:8100"
-            - name: ConnectionStrings__DefaultConnection
-              value: "Server=your_db_server;Database=your_db;User Id=user;Password=your_password;"
-            - name: Logging__LogLevel__Default
-              value: "Information"
+          # =============================================================
+          # THIS IS THE SECTION YOU NEED TO ADD/MODIFY
+          # It tells the container to load environment variables from a source.
+          # =============================================================
+          envFrom:
+            - configMapRef:
+                # This must match the metadata.name in your app-config.yml
+                name: simple-tools-api-config

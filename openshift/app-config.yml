@@ -1,0 +1,10 @@
+# app-config.yml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: simple-tools-api-config # A unique name for this ConfigMap
+data:
+  # These keys will become the environment variable names
+  ASPNETCORE_URLS: "http://*:8100"
+  Logging__LogLevel__Default: "Information"
+  FeatureToggles__EnableNewDashboard: "true"
