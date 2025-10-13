@@ -1,3 +1,6 @@
+# GitHub Action for building and deploying a .NET API to OpenShift
+name: Build and Deploy to OpenShift
+
 on:
   push:
     branches: [ main ]
