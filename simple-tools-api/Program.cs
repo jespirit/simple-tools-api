@@ -23,7 +23,8 @@ var app = builder.Build();
 
 app.UseCors(MyAllowSpecificOrigins);
 
-app.UseHttpsRedirection();
+// The router decrypts TLS traffic and sends it unencrypted to the application.
+// app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
