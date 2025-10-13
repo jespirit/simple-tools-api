@@ -1,0 +1,6 @@
+spec:
+  strategy:
+    sourceStrategy:
+      env:
+        - name: DOTNET_STARTUP_PROJECT
+          value: simple-tools-api/simple-tools-api.csproj

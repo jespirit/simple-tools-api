@@ -1,0 +1,15 @@
+spec:
+  template:
+    spec:
+      containers:
+        - name: simple-tools-api # <-- IMPORTANT: Use the name of your application
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          env:
+            - name: ASPNETCORE_URLS
+              value: "http://*:8100"
+            - name: ConnectionStrings__DefaultConnection
+              value: "Server=your_db_server;Database=your_db;User Id=user;Password=your_password;"
+            - name: Logging__LogLevel__Default
+              value: "Information"
