@@ -31,9 +31,12 @@ jobs:
         run: |
           oc start-build simple-tools-api --from-dir=. --follow
           
-      # 3. Applies the latest deployment configuration
-      - name: Apply Deployment
-        run: oc rollout latest dc/simple-tools-api
+      # -------------------------------------------------------------------
+      # CORRECTED STEP: Use 'rollout restart' for a 'Deployment'
+      # The resource is 'deployment/' (or the short name 'deploy/') not 'dc/'.
+      # -------------------------------------------------------------------
+      - name: Trigger new deployment rollout
+        run: oc rollout restart deployment/simple-tools-api
 
       # 4. Logs out of Openshift
       - name: Log out of Openshift
