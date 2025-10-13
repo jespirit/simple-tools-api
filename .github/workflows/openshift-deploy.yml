@@ -1,0 +1,31 @@
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Logs into openshift
+      - name Log in to Openshift
+        uses: redhat-actions/oc-login@v1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
+          openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
+          insecure_skip_tls_verify: true # Use this for developer sandboxes with self-signed certs
+          namespace: ${{ secrets.OPENSHIFT_PROJECT }}
+
+      # 2. Starts a new binary build from the latest code
+      - name: Start openshift build
+        run: |
+          oc start-build simple-tools-api --from-dir=. --follow
+          
+      # 3. Applies the latest deployment configuration
+      - name: Apply Deployment
+        run: oc rollout latest dc/simple-tools-api
+
+      # 4. Logs out of Openshift
+      - name: Log out of Openshift
+        if: always()
+        run: oc logout
