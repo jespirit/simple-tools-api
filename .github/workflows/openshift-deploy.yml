@@ -11,7 +11,7 @@ jobs:
 
     steps:
       # 1. Logs into openshift
-      - name Log in to Openshift
+      - name: Log in to Openshift
         uses: redhat-actions/oc-login@v1
         with:
           openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
