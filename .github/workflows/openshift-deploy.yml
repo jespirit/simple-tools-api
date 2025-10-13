@@ -35,17 +35,17 @@ jobs:
           insecure_skip_tls_verify: true # Use this for developer sandboxes with self-signed certs
           namespace: ${{ secrets.OPENSHIFT_PROJECT }}
 
-      # # NEW STEP: Apply environment variables to the BuildConfig
-      # - name: Apply Build Configuration
-      #   run: oc patch buildconfig simple-tools-api --patch-file openshift/buildconfig-patch.yml
-
-      # # NEW STEP: Apply environment variables to the Deployment
-      # - name: Apply Deployment Configuration
-      #   run: oc patch deployment simple-tools-api --patch-file openshift/deployment-patch.yml
-
       # NEW METHOD: Declaratively apply all configs in the 'openshift' directory
       - name: Apply Configurations
         run: oc apply -f openshift/
+
+      # NEW STEP: Apply environment variables to the BuildConfig
+      - name: Apply Build Configuration
+        run: oc patch buildconfig simple-tools-api --patch-file openshift/buildconfig-patch.yml
+
+      # NEW STEP: Apply environment variables to the Deployment
+      - name: Apply Deployment Configuration
+        run: oc patch deployment simple-tools-api --patch-file openshift/deployment-patch.yml
 
       # 2. Starts a new binary build from the latest code
       - name: Start openshift build
