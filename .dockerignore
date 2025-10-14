@@ -1,0 +1,14 @@
+# .dockerignore
+
+# Exclude build artifacts and local development files
+bin/
+obj/
+.vscode/
+.vs/
+*.user
+*.suo
+
+# Exclude source control and project files that aren't needed
+.git/
+.gitignore
+Dockerfile
