@@ -37,7 +37,7 @@ jobs:
 
       # NEW METHOD: Declaratively apply all configs in the 'openshift' directory
       - name: Apply Configurations
-        run: oc apply -f openshift/
+        run: oc apply -f openshift/app-config.yml
 
       # NEW STEP: Apply environment variables to the BuildConfig
       - name: Apply Build Configuration
