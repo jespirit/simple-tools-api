@@ -163,7 +163,7 @@ jobs:
         tags: ${{ steps.build-image.outputs.tags }}
         registry: ${{ env.OPENSHIFT_REGISTRY_URL }}
         username: github-actions # Username can be anything for token-based auth
-        password: ${{ env.OPENSHIFT_REGISTRY_TOKEN }}
+        password: ${{ secrets.OPENSHIFT_REGISTRY_TOKEN }}
 
     # The path the image was pushed to is now stored in ${{ steps.push-image.outputs.registry-path }}
 
