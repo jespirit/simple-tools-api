@@ -204,7 +204,8 @@ jobs:
         SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
       run: |
         if [[ -z "$ROUTE" ]]; then
-          echo "Determining application route failed in previous step"; exit 1)
+          echo "Determining application route failed in previous step"
+          exit 1
         fi
         echo
         echo "======================== Your application is available at: ========================"
