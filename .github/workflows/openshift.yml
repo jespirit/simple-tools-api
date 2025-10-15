@@ -197,11 +197,15 @@ jobs:
       run: oc rollout restart deployment/${{ env.APP_NAME }}
 
     - name: Print application URL
+      # Fix syntax error in bash script when ROUTE is not set
+      #if: ${{ steps.deploy-and-expose.outputs.route }}
       env:
         ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
         SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
       run: |
-        [[ -n ${{ env.ROUTE }} ]] || (echo "Determining application route failed in previous step"; exit 1)
+        if [[ -z "$ROUTE" ]]; then
+          echo "Determining application route failed in previous step"; exit 1)
+        fi
         echo
         echo "======================== Your application is available at: ========================"
         echo ${{ env.ROUTE }}
