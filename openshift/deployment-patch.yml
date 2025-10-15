@@ -4,7 +4,7 @@ spec:
       containers:
         - name: simple-tools-api # <-- IMPORTANT: Use the name of your application
           ports:
-            - containerPort: 8080
+            - containerPort: 8100
               protocol: TCP
           # =============================================================
           # THIS IS THE SECTION YOU NEED TO ADD/MODIFY

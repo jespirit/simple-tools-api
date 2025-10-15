@@ -193,6 +193,18 @@ jobs:
     #     namespace: ${{ env.OPENSHIFT_NAMESPACE }}
     #     port: ${{ env.APP_PORT }}
 
+    # NEW METHOD: Declaratively apply all configs in the 'openshift' directory
+    - name: Apply Configurations
+      run: oc apply -f openshift/app-config.yml
+
+    # NEW STEP: Apply environment variables to the BuildConfig
+    # - name: Apply Build Configuration
+    #   run: oc patch buildconfig simple-tools-api --patch-file openshift/buildconfig-patch.yml
+
+    # NEW STEP: Apply environment variables to the Deployment
+    - name: Apply Deployment Configuration
+      run: oc patch deployment simple-tools-api --patch-file openshift/deployment-patch.yml
+
     - name: Trigger new deployment rollout
       run: oc rollout restart deployment/${{ env.APP_NAME }}
 
